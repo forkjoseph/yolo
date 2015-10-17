@@ -1,0 +1,84 @@
+\documentclass{sig-alternate}
+
+\usepackage{fixacm} % ACM format change
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{bigints}
+\usepackage{pgfplots}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[T1]{fontenc}
+\usepackage{gensymb}
+\usepackage{hyperref}
+%\usepackage[draft]{hyperref}
+\usepackage{authblk}
+\usepackage{breakurl}
+\usepackage{pgfplots}
+
+\setlist[enumerate]{itemsep=0mm}
+\graphicspath{ {images/} }
+\DeclareGraphicsExtensions{.pdf,.png,.ps}
+
+\def\UrlBreaks{\do\/\do-}
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = blue,
+     linkcolor    = black
+}
+
+\newfont{\mycrnotice}{ptmr8t at 7pt}
+\newfont{\myconfname}{ptmri8t at 7pt}
+\let\crnotice\mycrnotice%
+\let\confname\myconfname%
+\CopyrightYear{2015}
+% --- Author Metadata here ---
+%\permission{Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from Permissions@acm.org.}
+\conferenceinfo{Joseph 'xx}{Janurary 1 -1 2000, City, State}
+%{\mycrnotice{Copyright is held by the owner/author(s). Publication rights licensed to ACM.}}}
+%\copyrightetc{ACM \the\acmcopyr}
+%\crdata{978-1-4503-2782-4/14/04\ ...\$15.00.\\
+%http://dx.doi.org/10.1145/2578726.2578744}
+% --- End of Author Metadata ---
+
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\def\sharedaffiliation{\end{tabular}\newline\begin{tabular}{c}}
+
+\newcommand{\blah}{{\color{red}Blahhhhh}}
+\newcommand{\ph}{{\color{red}Place Holder}}
+\newcommand{\nd}{{\color{red} NOT DONE-->}}
+
+\begin{document}
+\title{Simple paper format}
+\numberofauthors{1}
+
+\author[*]{HyunJong JoSepH Lee}
+\affil[*]{Georgia Tech} 
+\renewcommand\Authands{ and }
+
+\maketitle
+
+\input{abstract}
+\input{introduction}
+\input{motivation}
+\input{implementation}
+\input{evaluation}
+\input{related}
+\input{conclusion}
+\input{acknowledgements}
+
+\bibliographystyle{abbrv}
+{\footnotesize{
+    \bibliography{citation}
+}}
+
+\input{appendix}
+
+\balancecolumns
+\end{document}
