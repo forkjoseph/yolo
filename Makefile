@@ -7,6 +7,7 @@ REF2=rfc
 TEX = $(wildcard *.tex)
 SRCS = $(TEX)
 REFS=$(REF1).bib
+OPTS = -interation=batchmode 1>/dev/null
 
 all: pdf
 
@@ -18,18 +19,18 @@ spell:
 
 
 pdf: $(SRCS) #$(REFS)
-	$(LATEX) $(REPORT)
+	$(LATEX) $(REPORT) $(OPTS)
 	$(BIBTEX) $(REPORT)
 	perl -pi -e "s/%\s+//" $(REPORT).bbl
-	$(LATEX) $(REPORT)
-	$(LATEX) $(REPORT)
+	$(LATEX) $(REPORT) $(OPTS)
+	$(LATEX) $(REPORT) $(OPTS)
 
 
 tidy:
 	rm -f *.dvi *.aux *.log *.blg *.bbl
 
 clean:
-	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.md5 *.auxlock *.out
+	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps
 
 
 #$(REPORT).ps: $(REPORT).dvi

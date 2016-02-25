@@ -1,30 +1,24 @@
 \documentclass{sig-alternate}
-
 \usepackage{fixacm} % ACM format change
-\usepackage{color}
-\usepackage{graphicx}
-\usepackage{grffile}
-\usepackage{verbatim}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{epstopdf}
-\usepackage{amsmath}
-\usepackage{bigints}
-\usepackage{pgfplots}
-\usepackage{textcomp}
+\usepackage[square,comma,numbers,sort&compress]{natbib}
+\usepackage[breaklinks,colorlinks]{hyperref}
+\usepackage[usenames,dvipsnames]{color}
+\hypersetup{citecolor=blue,linkcolor=blue}
+\usepackage{amsmath,amsopn,amssymb}
+\usepackage{endnotes,microtype,xspace,graphicx,fancyvrb,multirow}
+\usepackage{pgfplots,epsfig,caption,subcaption}
 \usepackage{enumitem}
+\usepackage{grffile}
+\usepackage{comment}
+% \usepackage{refcheck} % comment this out for final draft
+\usepackage{verbatim}
+\usepackage{bigints}
+\usepackage{textcomp}
 \usepackage{url}
 \usepackage[T1]{fontenc}
 \usepackage{gensymb}
-\usepackage{hyperref}
-%\usepackage[draft]{hyperref}
 \usepackage{authblk}
 \usepackage{breakurl}
-\usepackage{pgfplots}
-
-\setlist[enumerate]{itemsep=0mm}
-\graphicspath{ {images/} }
-\DeclareGraphicsExtensions{.pdf,.png,.ps}
 
 \def\UrlBreaks{\do\/\do-}
 \hypersetup{
@@ -40,28 +34,17 @@
 \CopyrightYear{2015}
 % --- Author Metadata here ---
 %\permission{Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from Permissions@acm.org.}
-\conferenceinfo{Joseph 'xx}{Janurary 1 -1 2000, City, State}
+\conferenceinfo{Conf 'XX}{Janurary 1 -1 2000, City, State}
 %{\mycrnotice{Copyright is held by the owner/author(s). Publication rights licensed to ACM.}}}
 %\copyrightetc{ACM \the\acmcopyr}
 %\crdata{978-1-4503-2782-4/14/04\ ...\$15.00.\\
 %http://dx.doi.org/10.1145/2578726.2578744}
 % --- End of Author Metadata ---
 
-\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
-\def\sharedaffiliation{\end{tabular}\newline\begin{tabular}{c}}
-
-\newcommand{\blah}{{\color{red}Blahhhhh}}
-\newcommand{\ph}{{\color{red}Place Holder}}
-\newcommand{\nd}{{\color{red} NOT DONE-->}}
+\input{cmds}
+\input{hdr}
 
 \begin{document}
-\title{Simple paper format}
-\numberofauthors{1}
-
-\author[*]{HyunJong JoSepH Lee}
-\affil[*]{Georgia Tech} 
-\renewcommand\Authands{ and }
-
 \maketitle
 
 \input{abstract}
@@ -78,8 +61,7 @@
 {\footnotesize{
     \bibliography{citation}
 }}
-
 \input{appendix}
-
 \balancecolumns
+
 \end{document}
