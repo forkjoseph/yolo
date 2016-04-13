@@ -7,7 +7,7 @@ REF2=rfc
 TEX = $(wildcard *.tex)
 SRCS = $(TEX)
 REFS=$(REF1).bib
-OPTS = -interation=batchmode 1>/dev/null
+OPTS = -interation=batchmode  1>/dev/null
 
 all: pdf
 
@@ -30,7 +30,7 @@ tidy:
 	rm -f *.dvi *.aux *.log *.blg *.bbl
 
 clean:
-	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps
+	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out
 
 
 #$(REPORT).ps: $(REPORT).dvi

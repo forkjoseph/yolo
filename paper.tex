@@ -1,4 +1,5 @@
-\documentclass{sig-alternate}
+% \documentclass{sig-alternate}
+\documentclass[10pt]{article}
 \usepackage{fixacm} % ACM format change
 \usepackage[square,comma,numbers,sort&compress]{natbib}
 \usepackage[breaklinks,colorlinks]{hyperref}
@@ -31,10 +32,10 @@
 \newfont{\myconfname}{ptmri8t at 7pt}
 \let\crnotice\mycrnotice%
 \let\confname\myconfname%
-\CopyrightYear{2015}
+% \CopyrightYear{2015}
 % --- Author Metadata here ---
 %\permission{Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from Permissions@acm.org.}
-\conferenceinfo{Conf 'XX}{Janurary 1 -1 2000, City, State}
+% \conferenceinfo{Conf 'XX}{Janurary 1 -1 2000, City, State}
 %{\mycrnotice{Copyright is held by the owner/author(s). Publication rights licensed to ACM.}}}
 %\copyrightetc{ACM \the\acmcopyr}
 %\crdata{978-1-4503-2782-4/14/04\ ...\$15.00.\\
@@ -44,24 +45,17 @@
 \input{cmds}
 \input{hdr}
 
+
 \begin{document}
 \maketitle
 
-\input{abstract}
-\input{dummy} % remove this for real one
-\input{introduction}
-\input{motivation}
-\input{implementation}
-\input{evaluation}
-\input{related}
-\input{conclusion}
-\input{acknowledgements}
+\onecolumn
+\nocite{*}
 
 \bibliographystyle{abbrv}
 {\footnotesize{
     \bibliography{citation}
 }}
-\input{appendix}
-\balancecolumns
+% \balancecolumns
 
 \end{document}
