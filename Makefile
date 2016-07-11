@@ -6,8 +6,9 @@ REF2=rfc
 
 TEX = $(wildcard *.tex)
 SRCS = $(TEX)
-REFS=$(REF1).bib
-OPTS = -interation=batchmode  1>/dev/null
+FMT = cmds.tex hdr.tex fmt.tex
+REFS = $(REF1).bib
+OPTS = -interation=batchmode 
 
 all: pdf
 
@@ -15,32 +16,36 @@ all: pdf
 
 spell:
 	make clean
-	for i in *.tex; do ispell $$i; done
+	for i in $(filter-out $(FMT), $(SRCS)); do ispell $$i; done
 
+loud: $(SRCS) $(REFS)
+		$(LATEX) $(REPORT) $(OPTS)
+		$(BIBTEX) $(REPORT)
+		perl -pi -e "s/%\s+//" $(REPORT).bbl
+		$(LATEX) $(REPORT) $(OPTS)
+		$(LATEX) $(REPORT) $(OPTS)
 
-pdf: $(SRCS) #$(REFS)
-	$(LATEX) $(REPORT) $(OPTS)
-	$(BIBTEX) $(REPORT)
-	perl -pi -e "s/%\s+//" $(REPORT).bbl
-	$(LATEX) $(REPORT) $(OPTS)
-	$(LATEX) $(REPORT) $(OPTS)
-
+pdf: $(SRCS) $(REFS)
+		$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+		$(BIBTEX) $(REPORT)
+		perl -pi -e "s/%\s+//" $(REPORT).bbl
+		$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+		$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 
 tidy:
-	rm -f *.dvi *.aux *.log *.blg *.bbl
+	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf
 
 clean:
-	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out
-
+	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf $(REPORT).pdf
 
 #$(REPORT).ps: $(REPORT).dvi
-#	dvips -t letter -G0 -P cmz $(REPORT).dvi -o $(REPORT).ps
+#       dvips -t letter -G0 -P cmz $(REPORT).dvi -o $(REPORT).ps
 #view: $(REPORT).dvi
-#	xdvi $(REPORT).dvi
+#       xdvi $(REPORT).dvi
 #print: $(REPORT).dvi
-#	dvips $(REPORT).dvi
+#       dvips $(REPORT).dvi
 #pdf: $(REPORT).ps
-#	ps2pdf14 -dPDFSETTINGS=/prepress -dSubsetFonts=true -dEmbedAllFonts=true $<
-#	ps2pdf $< $(REPORT).pdf
+#       ps2pdf14 -dPDFSETTINGS=/prepress -dSubsetFonts=true -dEmbedAllFonts=true $<
+#       ps2pdf $< $(REPORT).pdf
 #printer: $(REPORT).ps
-#	lpr $(REPORT).ps
+#       lpr $(REPORT).ps

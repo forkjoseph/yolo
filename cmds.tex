@@ -1,4 +1,17 @@
 % \newcommand{\subparagraph}{}
+
+%%% figs path
+\graphicspath{ {figs/} }
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\setlist[enumerate]{itemsep=0mm}
+
+\def\UrlBreaks{\do\/\do-}
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = blue,
+     linkcolor    = magenta
+}
+
 \newcommand{\degrees}{$\!\!$\char23$\!$}
 \renewcommand{\refname}{\centerline{References cited}}
 % \titlespacing*{\subsection}{0pt}{1.1\baselineskip}{\parskip}
@@ -8,20 +21,11 @@
 \hangindent=4em\hangafter=1#1}}}
 \def\baselinestretch{1}
 
-\graphicspath{ {img/} }
-\DeclareGraphicsExtensions{.pdf,.png,.jpg}
-\setlist[enumerate]{itemsep=0mm}
-
 \newenvironment{ppl}{\fontfamily{cmr}\selectfont}{\par}
 % \newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
 % \def\sharedaffiliation{\end{tabular}\newline\begin{tabular}{c}}
 
-\newcommand{\blah}{{\color{red}Blahhhh}}
-\newcommand{\nd}{{\color{red}-->Not done}}
-\newcommand{\pl}{{\color{red}-->Place Holder}}
-
 \renewcommand{\ttdefault}{pxtt}
-
 \newcommand{\URL}{\url}
 \newcommand{\cc}[1]{\mbox{\smaller[0.5]\texttt{#1}}}
 
