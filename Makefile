@@ -38,6 +38,10 @@ tidy:
 clean:
 	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf $(REPORT).pdf
 
+show: all
+	evince paper.pdf
+
+
 #$(REPORT).ps: $(REPORT).dvi
 #       dvips -t letter -G0 -P cmz $(REPORT).dvi -o $(REPORT).ps
 #view: $(REPORT).dvi
