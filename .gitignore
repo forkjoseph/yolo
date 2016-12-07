@@ -6,3 +6,6 @@
 *.blg
 *.log
 *.out
+*.bwk
+CVS
+*/*.swp

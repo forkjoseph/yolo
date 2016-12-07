@@ -29,119 +29,12 @@
 \date{}
 
 \begin{document}
-% \input{hdr}
-% \maketitle
+\input{hdr}
+\maketitle
 \thispagestyle{empty}
 \onecolumn
 \setlength\parindent{0pt}
 \nocite{*}
-
-Q: {\it when two networks are available and given latency, b/w, data rate of each
-network and transfer size, how to decide which one or both to use in respect to
-weight in performance and data-usage? }
-\newline
-
-% problem justi.
-When one network performs better than another with low or no cost for data
-usage, selecting which network to use is straightforward. However, when one
-network with a cost performs better than another with no cost, choosing which
-network to select becomes difficult (performance vs. cost).
-% statement
-Our utility function policy takes account of performance (benefit) and data
-consumption (cost) to transfer data so that an user can specify preference over
-benefit and cost in 0 to 1 scale.
-\newline
-
-% net perf is resulted in time...!
-First, our policy calculates performance of a network in seconds as following:
-$$T(net)=T(size, b/w, latency) = \frac{size}{b/w}+latency$$ 
-% in $\emptyset$ error or loss rate
-where $size$ is amount of data to be transferred, $b/w$ and $latency$ are
-bandwidth and end-to-end latency of a network. 
-% Note that we use end-to-end latency of a network, instead of Round-Trip Time
-% (RTT).
-Details in calculating $b/w$ in respect to packet loss, error probabilities are
-well-discussed in~\cite{macroscopic}.
-
-% why do we need $$$ for D, instead of bytes?
-Next, the cost of transferring data with size $S$ is expressed in dollar,
-instead of bytes. That is because many network plans come with a budget for
-% b/c "good" performance comes within only budgeted data.
-regular latency or b/w (e.g., 2GB for LTE speed, 1TB for 15Mbps, etc) and after
-the budget, either latency or b/w is throttled ({\it throttled stage}), although
-one may claim that the amount an user pays includes not only budgeted data at
-% sure it's unlimited, but it includes 2 stages!
-regular latency or b/w but throttled stage.  Especially, when the goal of a
-% when our goal is for performance, it's not good to step into throttled stage
-policy is to maximize the benefit, efficiently scheduling within a boundary of
-the budgeted data before throttled stage is crucial.
-Compared to the data cost model proposed in IMP~\cite{imp}, which explicitly
-states that stationary networks (e.g., Wifi) always outperforms in terms of data
-rate, performance, and energy, our model estimates data cost associated
-transferring a set of data size $S$ through a specific network $net$ with data
-rate parameter to reflect a real world environment, where users generally pay
-for X dollars for Y amount of data transferred at regular Z latency, as
-following:
-$$D(net)=D(size, data\_rate) = \frac{size}{data\_rate} = \text{cost in }\$ $$
-Based on two metrics (performance and data cost), our scheduler selects via
-which network(s) to transfer the data: when $T_{wifi} \leq T_{cell}$, always use
-wifi, but when two metrics are contradicting such that $T_{wifi} > T_{cell}$ and
-$D_{wifi} < D_{cell}$, we need additional heuristic called expected utility
-value to conclude which network to use.
-\nw
-
-% why simple one does not work
-% by decision theory (http://www.sfu.ca/~wainwrig/mpp/mpp-expectedutility.pdf)
-Making a decision on which network to select is a derivative problem of decision
-theory.
-% risky function results in same value
-A risky neutral function that has linear constant results in the expected
-utility of benefit equal to the utility of its expected value. 
-% thus it does not reflect "future" potential outcomes by taking this decision
-In other words, a risky neutral function does not reflect potential ``future''
-outcomes by taking current decision. For instance, a simple linear utility
-function that takes performance (benefit) and data usage (cost) multiplied with
-preference - 
-$$U(net) = T_{net} + C_{t/\$}D_{net}$$
-where $C_{t/\$}$ is a constant that an user willing to spend X dollars more to
-save Y seconds - gives utility value equal to its expected value, thereby not
-% linear one does not reflect preference
-reflecting a consequence of taking current decision upon future outcomes and is
-% thus it's bad
-not suitable for our policy that tries to maximize benefit including future
-outcomes by selecting a network.
-A model, von Neumann-Morgenstern utility function shows that when a
-% explain von Neumann function
-decision-maker faces with risky (probabilistic) outcomes based on what he
-chooses, he behaves to maximize the expected value of some utility function
-defined over potential results in the future.
-If we slightly modify the function to take a probability that a network will
-give higher benefit (performance) based on historical distribution, we have:
-$$U(net) = Prob_{ T_{net} \leq T_{others} }T_{net} + (1-Prob_{ T_{net} >
-T_{others}})C_{t/\$}D_{net}$$
-which now reflects ``future'' potential outcomes based on historical measures.
-However, this model still lacks preference over a wealth. In our model, we
-define a preference over a benefit from 0 to 1 scale and sum of all wealth to be
-% C_t & C_d ==> what are they>??? 
-1, i.e., $C_{perf} + C_{data} = 1$. Note that as a constant is closer to 1, an
-user has strong preference over the metric (wealth). 
-% why is better than sth simple??? 
-% As discussed previously, risky neutral (linear function) model 
-
-% budget to modify constant
-
-% how to get params?
-% b/w & latency -> from tcp
-% size??
-% 1) app tells the system
-% 2) size distribution 
-% 3) learn from characteristic of traffic by looking at traffic
-%     --> is latency-sensitive
-% A First Look at Traffic on Smartphones
-% \nw
-% B/w \& latency can be obtained from TCP stack. However, size of data transfer is
-
-
 
 
 \newpage
