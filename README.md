@@ -7,7 +7,8 @@ make clean # git mode
 make spell # ispell check 
 ```
 
-Use ``:set spell`` for spelling check in vim. 
+```
+Use '':set spell'' for spelling check in vim. 
 To search for the next misspelled word:
 
 ]s           Move to next misspelled word after the cursor.
@@ -23,4 +24,4 @@ z=           For the word under/after the cursor, suggest correctly
 To add words to your own word list:
 
 zg           Add word under the cursor as a good word
-
+```
