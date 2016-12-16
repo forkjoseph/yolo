@@ -1,14 +1,25 @@
-REPORT=paper
-LATEX=pdflatex
-BIBTEX=bibtex -min-crossrefs=100
-REF1=ref
-REF2=rfc
+REPORT	=	paper
+LATEX		= pdflatex
+BIBTEX	= bibtex -min-crossrefs=100
+REF1		=	ref
+REF2		=	rfc
 
-TEX = $(wildcard *.tex)
-SRCS = $(TEX)
-FMT = cmds.tex hdr.tex fmt.tex
-REFS = $(REF1).bib
-OPTS = -interation=batchmode 
+TEX 	= $(wildcard *.tex)
+SRCS 	= $(TEX)
+FMT 	= cmds.tex hdr.tex fmt.tex
+REFS 	= $(REF1).bib
+OPTS 	= -interation=batchmode 
+UNAME	=	$(shell uname -s)
+
+ifeq ($(UNAME), Linux)
+	VIEWER	=	evince
+endif 
+ifeq ($(UNAME), Darwin)
+	VIEWER	=	open
+endif
+ifeq ($(OS),Windows_NT)
+	VIEWER	=	$(shell echo "Yolo does not support stupid Windows ^.^  >> file: ")
+endif
 
 all: pdf
 
@@ -19,18 +30,18 @@ spell:
 	for i in $(filter-out $(FMT), $(SRCS)); do ispell $$i; done
 
 loud: $(SRCS) $(REFS)
-		$(LATEX) $(REPORT) $(OPTS)
-		$(BIBTEX) $(REPORT)
-		perl -pi -e "s/%\s+//" $(REPORT).bbl
-		$(LATEX) $(REPORT) $(OPTS)
-		$(LATEX) $(REPORT) $(OPTS)
+	$(LATEX) $(REPORT) $(OPTS)
+	$(BIBTEX) $(REPORT)
+	perl -pi -e "s/%\s+//" $(REPORT).bbl
+	$(LATEX) $(REPORT) $(OPTS)
+	$(LATEX) $(REPORT) $(OPTS)
 
 pdf: $(SRCS) $(REFS)
-		$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
-		$(BIBTEX) $(REPORT)
-		perl -pi -e "s/%\s+//" $(REPORT).bbl
-		$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
-		$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+	$(BIBTEX) $(REPORT)
+	perl -pi -e "s/%\s+//" $(REPORT).bbl
+	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 
 tidy:
 	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf
@@ -39,7 +50,7 @@ clean:
 	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf $(REPORT).pdf
 
 show: all
-	evince paper.pdf
+	$(VIEWER) $(REPORT).pdf
 
 
 #$(REPORT).ps: $(REPORT).dvi

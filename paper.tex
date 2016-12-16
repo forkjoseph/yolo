@@ -1,5 +1,5 @@
-\documentclass[12pt]{article}
-% \documentclass{sig-alternate}
+% \documentclass[12pt]{article}
+\documentclass[preprint]{sig-alternate}
 % \documentclass[conference]{IEEEtran}
 
 % \usepackage{fixacm} % ACM format change
@@ -27,15 +27,18 @@
 
 \input{cmds}
 \date{}
+\toappear{Yolo simple paper template}
 
 \begin{document}
 \input{hdr}
+
 \maketitle
 \thispagestyle{empty}
-\onecolumn
-\setlength\parindent{0pt}
+% \onecolumn
+% \setlength\parindent{0pt}
 \nocite{*}
 
+\input{abs}
 
 \newpage
 %REF
@@ -44,6 +47,6 @@
 % {\footnotesize{
   \bibliography{ref}
 % }}
-% \balancecolumns
+\balancecolumns
 
 \end{document}
