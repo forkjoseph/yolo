@@ -49,7 +49,7 @@ tidy:
 clean:
 	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf $(REPORT).pdf
 
-show: all
+view: all
 	$(VIEWER) $(REPORT).pdf
 
 
