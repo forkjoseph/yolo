@@ -1,12 +1,14 @@
 # Yolo paper template
 ```bash
-make # for quite mode
-make loud # for error 
-make tidy # for submisssion
-make clean # git mode
-make spell # ispell check 
+make          # for quite mode
+make loud     # for error 
+make tidy     # for submisssion
+make clean    # git mode
+make spell    # ispell check 
+make view     # build & open the pdf
 ```
 
+For spelling check in vim, use '':set spell''. To search for the next 
 ```
 Use '':set spell'' for spelling check in vim. 
 To search for the next misspelled word:
