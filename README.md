@@ -1,4 +1,5 @@
-# Yolo paper template
+# Yolo (You Only Light(write) Once): simple paper template
+
 ```bash
 make          # for quite mode
 make loud     # for error 
