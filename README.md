@@ -1,4 +1,4 @@
-# Yolo (You Only Light(write) Once): simple paper template
+# Yolo: simple paper template
 
 ```bash
 make          # for quite mode
@@ -29,3 +29,6 @@ To add words to your own word list:
 
 zg           Add word under the cursor as a good word
 ```
+
+### What does mean by **Yolo**?
+Yolo stands for "You Only Light(write) Once" XD
