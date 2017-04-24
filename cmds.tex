@@ -1,11 +1,10 @@
-% \newcommand{\subparagraph}{}
-\newcommand{\todo}[1]{{\color{red}\textbf{TODO:} \textbf{#1}}\newline}
 
 %%% figs path
 \graphicspath{ {figs/} }
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \setlist[enumerate]{itemsep=0mm}
 
+%%% url pretifier
 \def\UrlBreaks{\do\/\do-}
 \hypersetup{
      colorlinks   = true,
@@ -13,8 +12,6 @@
      linkcolor    = magenta
 }
 
-\newcommand{\degrees}{$\!\!$\char23$\!$}
-\newcommand{\nw}{\newline}
 \renewcommand{\refname}{\centerline{REFERENCES CITED}}
 % \titlespacing*{\subsection}{0pt}{1.1\baselineskip}{\parskip}
 % this handles hanging indents for publications
@@ -30,12 +27,6 @@
 \renewcommand{\ttdefault}{pxtt}
 \newcommand{\URL}{\url}
 \newcommand{\cc}[1]{\mbox{\smaller[0.5]\texttt{#1}}}
-
-%\clubpenalty=10000
-%\widowpenalty=10000
-
-%\linespread{1.2}
-
 \fvset{fontsize=\scriptsize,xleftmargin=8pt,numbers=left,numbersep=5pt}
 
 \input{fmt}
@@ -87,11 +78,15 @@
 \newcommand{\TK}[1]{\textcolor{LimeGreen}{TK: #1}}
 \newcommand{\XXX}[1]{\textcolor{red}{XXX: #1}}
 \newcommand{\TODO}[1]{\textcolor{Melon}{TODO: #1}}
+\newcommand{\todo}[1]{{\color{red}\textbf{TODO:} \textbf{#1}}\newline}
+\newcommand{\degrees}{$\!\!$\char23$\!$}
 
 % hide comments
-% \renewcommand{\TK}[1]{\ignorespaces}
-% \renewcommand{\XXX}[1]{\ignorespaces}
-% \renewcommand{\TODO}[1]{\ignorespaces}
+\if 0
+\renewcommand{\TK}[1]{\ignorespaces}
+\renewcommand{\XXX}[1]{\ignorespaces}
+\renewcommand{\TODO}[1]{\ignorespaces}
+\fi
 
 %% Ensure ligatures (e.g., ``fine official flag'') can be copy/pasted from PDF.
 \input{glyphtounicode}
