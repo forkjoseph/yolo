@@ -21,7 +21,7 @@ ifeq ($(OS),Windows_NT)
 	VIEWER	=	$(shell echo "Yolo does not support stupid Windows ^.^  >> file: ")
 endif
 
-all: pdf
+all: loud
 
 ############################################################
 
@@ -35,6 +35,13 @@ loud: $(SRCS) $(REFS)
 	perl -pi -e "s/%\s+//" $(REPORT).bbl
 	$(LATEX) $(REPORT) $(OPTS)
 	$(LATEX) $(REPORT) $(OPTS)
+
+quite: $(SRCS) $(REFS)
+	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+	$(BIBTEX) $(REPORT)
+	perl -pi -e "s/%\s+//" $(REPORT).bbl
+	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 
 pdf: $(SRCS) $(REFS)
 	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
