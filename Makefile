@@ -51,10 +51,10 @@ pdf: $(SRCS) $(REFS)
 	$(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 
 tidy:
-	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf
+	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf *.soc
 
 clean:
-	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf $(REPORT).pdf
+	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf *.soc $(REPORT).pdf
 
 view: all
 	$(VIEWER) $(REPORT).pdf
