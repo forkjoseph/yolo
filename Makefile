@@ -35,25 +35,34 @@ endif
 
 .PHONY: fast loud quite bib spell 
 
-fast: $(SRCS) $(REFS)
+abs: 
+	@echo "\\\\begin{abstract}" > abs.tex
+	@cat abs.txt >> abs.tex
+	@echo "\end{abstract}" >> abs.tex
+	@echo ================= building abstract.tex ===================
+
+fast: abs $(SRCS) $(REFS)
 	@echo ================== YOLO: running fast build ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	# rm abs.tex
 
-loud: $(SRCS) $(REFS)
+loud: abs $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
 	$(BIBTEX) $(REPORT)
 	perl -pi -e "s/%\s+//" $(REPORT).bbl
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	rm abs.tex
 
-quite: $(SRCS) $(REFS)
+quite: abs $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build quitely ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 	$(BIBTEX) $(REPORT)
 	perl -pi -e "s/%\s+//" $(REPORT).bbl
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) 1>/dev/null
+	rm abs.tex
 
 spell:
 	make clean
