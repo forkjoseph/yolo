@@ -1,0 +1,34 @@
+
+%%% url pretifier
+\def\UrlBreaks{\do\/\do-}
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = blue,
+     linkcolor    = magenta
+}
+\frenchspacing
+\sloppy
+\newcommand\unit{\,}
+\newcommand{\tuple}[1]{\ensuremath{\left \langle #1 \right \rangle }}
+\newenvironment{captiontext}{%
+   \begin{center}%
+     \begin{minipage}{0.9\linewidth}%
+       \renewcommand{\baselinestretch}{0.9}%
+         \sffamily\small}%
+   {\renewcommand{\baselinestretch}{1.0}%
+      \end{minipage}%
+        \end{center}}
+\newenvironment{smitemize}%
+  {\begin{list}{$\bullet$}%
+     {\setlength{\parsep}{0pt}%
+      \setlength{\topsep}{0pt}%
+      \setlength{\leftmargin}{2pc}%
+      \setlength{\itemsep}{2pt}}}%
+  {\end{list}}
+
+\makeatletter
+\renewcommand\AB@affilsepx{, \protect\Affilfont}
+\makeatother
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%

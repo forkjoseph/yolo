@@ -1,47 +1,30 @@
-\documentclass[12pt]{article}
-% \documentclass[preprint]{sig-alternate}
-% \documentclass[conference]{IEEEtran}
+\documentclass[letterpaper,twocolumn,10pt]{article}
 
-% \usepackage{fixacm} % ACM format change
-\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
-\usepackage[square,comma,numbers,sort&compress]{natbib}
-\usepackage[breaklinks,colorlinks]{hyperref}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath,amsopn,amssymb,gensymb} % math
-\usepackage{endnotes,microtype,xspace,graphicx,fancyvrb,multirow}
-\usepackage{pgfplots,epsfig,caption,subcaption} % figs 2
-\usepackage{verbatim,textcomp}
-\usepackage{enumitem,comment}
-\usepackage{url,breakurl}
-\let\labelindent\relax 
-
-% stupid IEEE...
-% \usepackage{authblk} % comment this out for IEEE
-% \usepackage{refcheck} % comment this out for final draft
-
-\input{cmds}
-\date{}
-% \toappear{Yolo simple paper template}
+\usepackage{usenix}
+\usepackage{xspace}
+% \usepackage[breaklinks,colorlinks]{hyperref}
+\usepackage{authblk}
+\usepackage{pgfplots}
+\usepackage{caption}
+\usepackage{enumitem} 
+\usepackage{comment}
+\usepackage{amsmath}
 
 \begin{document}
-\input{hdr}
+\input{cmd}
+\title{title}
 
 \maketitle
 \thispagestyle{empty}
-% \onecolumn
-% \setlength\parindent{0pt}
 \nocite{*}
 
 \input{abs}
+\input{intro}
+\input{cmds}
 
-\newpage
-%REF
-\bibliographystyle{abbrv}
-% \bibliographystyle{ieee}
-% {\footnotesize{
-  \bibliography{macro,ref}
-% }}
+\clearpage
+\bibliographystyle{plain}
+\bibliography{macro,ref}
 % \balancecolumns
 
 \end{document}
