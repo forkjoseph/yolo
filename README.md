@@ -9,6 +9,14 @@ make spell    # ispell check
 make view     # build & open the pdf
 ```
 
+## Importing to Overleaf
+```bash
+cd yolo
+mv sty/* . 
+mv abs.txt abs.tex
+```
+
+## Spell check
 For spelling check in vim, use `:set spell`
 ```
 To search for the next misspelled word:
