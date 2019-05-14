@@ -33,7 +33,7 @@ else
 all: loud
 endif
 
-.PHONY: fast loud quite bib spell 
+.PHONY: fast loud quite bib spell force f
 
 abs: 
 	@echo "\\\\begin{abstract}" > abs.tex
@@ -41,10 +41,18 @@ abs:
 	@echo "\end{abstract}" >> abs.tex
 	@echo ================= building abstract.tex ===================
 
+f: $(SRCS) $(REFS)
+	@echo ================== YOLO: running full build ==================
+	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	$(BIBTEX) $(REPORT)
+	perl -pi -e "s/%\s+//" $(REPORT).bbl
+	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+
 fast: abs $(SRCS) $(REFS)
 	@echo ================== YOLO: running fast build ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
-	# rm abs.tex
+	rm abs.tex
 
 loud: abs $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build ==================
@@ -78,6 +86,8 @@ full: loud
 pdf: loud
 
 q: quite
+
+force: f
 
 tidy:
 	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf *.soc
