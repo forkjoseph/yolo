@@ -35,12 +35,6 @@ endif
 
 .PHONY: fast loud quite bib spell force f
 
-abs: 
-	@echo "\\\\begin{abstract}" > abs.tex
-	@cat abs.txt >> abs.tex
-	@echo "\end{abstract}" >> abs.tex
-	@echo ================= building abstract.tex ===================
-
 f: $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
@@ -49,28 +43,25 @@ f: $(SRCS) $(REFS)
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
 
-fast: abs $(SRCS) $(REFS)
+fast: $(SRCS) $(REFS)
 	@echo ================== YOLO: running fast build ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
-	rm abs.tex
 
-loud: abs $(SRCS) $(REFS)
+loud: $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
 	$(BIBTEX) $(REPORT)
 	perl -pi -e "s/%\s+//" $(REPORT).bbl
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
-	rm abs.tex
 
-quite: abs $(SRCS) $(REFS)
+quite: $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build quitely ==================
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 	$(BIBTEX) $(REPORT)
 	perl -pi -e "s/%\s+//" $(REPORT).bbl
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) 1>/dev/null
 	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) 1>/dev/null
-	rm abs.tex
 
 spell:
 	make clean
