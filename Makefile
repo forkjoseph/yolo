@@ -7,7 +7,7 @@ TEX 	= $(wildcard *.tex)
 SRCS 	= $(TEX)
 FMT 	= cmds.tex hdr.tex fmt.tex
 REFS 	= macro.bib $(REF).bib
-OPTS 	= -interation=batchmode 
+OPTS 	= -interation=nonstopmode -quiet -halt-on-error
 UNAME	=	$(shell uname -s)
 QUITE = false
 
@@ -33,7 +33,7 @@ else
 all: loud
 endif
 
-.PHONY: fast loud quite bib spell force f
+.PHONY: fast loud quite bib spell 
 
 f: $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build ==================
@@ -49,11 +49,11 @@ fast: $(SRCS) $(REFS)
 
 loud: $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build ==================
-	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	@TEXINPUTS="sty:" $(LATEX) $(OPTS) $(REPORT) $(SUFFIX) 
 	$(BIBTEX) $(REPORT)
 	perl -pi -e "s/%\s+//" $(REPORT).bbl
-	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
-	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	@TEXINPUTS="sty:" $(LATEX) $(OPTS) $(REPORT) $(SUFFIX) 
+	@TEXINPUTS="sty:" $(LATEX) $(OPTS) $(REPORT) $(SUFFIX) 
 
 quite: $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build quitely ==================
@@ -77,8 +77,6 @@ full: loud
 pdf: loud
 
 q: quite
-
-force: f
 
 tidy:
 	rm -f *~ *.dvi *.aux *.log *.blg *.bbl $(REPORT).ps *.out *.bcf *.soc
