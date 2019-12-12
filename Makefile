@@ -35,10 +35,17 @@ endif
 
 .PHONY: fast loud quite bib spell 
 
+f: $(SRCS) $(REFS)
+	@echo ================== YOLO: running full build ==================
+	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	$(BIBTEX) $(REPORT)
+	perl -pi -e "s/%\s+//" $(REPORT).bbl
+	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
+
 fast: $(SRCS) $(REFS)
 	@echo ================== YOLO: running fast build ==================
-	@TEXINPUTS="sty:" $(LATEX) $(OPTS) $(REPORT) $(SUFFIX) 
-	rm -f *~ *.dvi *.log *.blg $(REPORT).ps *.out *.bcf *.soc
+	@TEXINPUTS="sty:" $(LATEX) $(REPORT) $(OPTS) $(SUFFIX)
 
 loud: $(SRCS) $(REFS)
 	@echo ================== YOLO: running full build ==================
